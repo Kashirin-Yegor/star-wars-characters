@@ -2,11 +2,12 @@
   "name": "star-wars-characters",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
@@ -54,15 +55,19 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "@tailwindcss/postcss": "^4.1.12",
     "@types/node": "^20.0.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.40.0",
+    "@typescript-eslint/parser": "^8.40.0",
     "autoprefixer": "^10.4.21",
-    "eslint": "^8.0.0",
-    "eslint-config-next": "15.0.0",
+    "eslint": "^9.33.0",
+    "eslint-config-next": "^15.5.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.12",
-    "typescript": "^5.0.0"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.40.0"
   }
 }

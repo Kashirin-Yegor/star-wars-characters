@@ -1,4 +1,4 @@
-import { CharacterDetailPageClient } from '../../../components/CharacterDetailPageClient';
+import { CharacterDetailPageClient } from "../../../components/CharacterDetailPageClient";
 
 export default function CharacterPage() {
   return <CharacterDetailPageClient />;

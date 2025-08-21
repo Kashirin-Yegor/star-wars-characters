@@ -1,26 +1,26 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { Character, ApiResponse } from '../types/character';
-import { charactersApi } from '../services/api';
-import { CharacterCard } from './CharacterCard';
-import { CharacterListItem } from './CharacterListItem';
-import { PaginationComponent } from './PaginationComponent';
-import { Input } from './ui/input';
-import { Button } from './ui/button';
-import { Switch } from './ui/switch';
-import { Label } from './ui/label';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Search, Grid, List, Loader2 } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Character, ApiResponse } from "../types/character";
+import { charactersApi } from "../services/api";
+import { CharacterCard } from "./CharacterCard";
+import { CharacterListItem } from "./CharacterListItem";
+import { PaginationComponent } from "./PaginationComponent";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import { Switch } from "./ui/switch";
+import { Label } from "./ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Search, Grid, List, Loader2 } from "lucide-react";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export function CharactersPage() {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [isCardView, setIsCardView] = useState(true);
@@ -28,27 +28,27 @@ export function CharactersPage() {
 
   const prepareCharacters = (originalData:Character[]): Character[] => {
     try{
-      const cache = localStorage.getItem('sw_character_edits');
+      const cache = localStorage.getItem("sw_character_edits");
       const chacheData = cache ? JSON.parse(cache) : {};
       return originalData.map((el) => {
-        const find_cache = chacheData[el.name] ?? {}
-        return {...el,...find_cache}
-      })
+        const find_cache = chacheData[el.name] ?? {};
+        return {...el,...find_cache};
+      });
     }catch(e){
-      console.log(e)
-      return []
+      console.log(e);
+      return [];
     }
-  }
+  };
 
-  const fetchCharacters = async (page = 1, search = '') => {
+  const fetchCharacters = async (page = 1, search = "") => {
     try {
       setLoading(true);
       setError(null);
       const data: ApiResponse = await charactersApi.getCharacters(page, search);
       setCharacters(prepareCharacters(data.results));
       setTotalPages(Math.ceil(data.count / 10)); // SWAPI возвращает 10 результатов на страницу
-    } catch (err) {
-      setError('Не удалось загрузить персонажей');
+    } catch{
+      setError("Не удалось загрузить персонажей");
       setCharacters([]);
     } finally {
       setLoading(false);
@@ -99,7 +99,7 @@ export function CharactersPage() {
               />
               <Grid className="w-4 h-4" />
               <Label htmlFor="view-mode" className="text-sm">
-                {isCardView ? 'Карточки' : 'Список'}
+                {isCardView ? "Карточки" : "Список"}
               </Label>
             </div>
           </div>
@@ -167,7 +167,7 @@ export function CharactersPage() {
           {!loading && !error && characters.length === 0 && (
             <div className="text-center py-8">
               <p className="text-muted-foreground">
-                {searchQuery ? 'Персонажи не найдены' : 'Нет персонажей для отображения'}
+                {searchQuery ? "Персонажи не найдены" : "Нет персонажей для отображения"}
               </p>
             </div>
           )}

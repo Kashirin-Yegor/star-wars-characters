@@ -292,7 +292,7 @@ function ChartLegendContent(props: ChartLegendContentProps) {
         className,
       )}
     >
-      {payload.map((item: Record<string, unknown>, index: number) => {
+      {payload.map((item: Record<string, unknown>) => {
         const key = `${nameKey || item.dataKey || "value"}`;
         const itemConfig = getPayloadConfigFromPayload(config, item, key);
         return (

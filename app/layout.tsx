@@ -1,13 +1,13 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import '../styles/globals.css';
-import { Toaster } from '../components/ui/sonner';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "../styles/globals.css";
+import { Toaster } from "../components/ui/sonner";
 
-const inter = Inter({ subsets: ['latin', 'cyrillic'] });
+const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
 export const metadata: Metadata = {
-  title: 'Star Wars Characters',
-  description: 'Приложение для просмотра персонажей из вселенной Star Wars',
+  title: "Star Wars Characters",
+  description: "Приложение для просмотра персонажей из вселенной Star Wars",
 };
 
 export default function RootLayout({

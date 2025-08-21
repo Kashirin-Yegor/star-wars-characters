@@ -1,6 +1,6 @@
-import { ApiResponse, Character, Planet } from '../types/character';
+import { ApiResponse, Character, Planet } from "../types/character";
 
-const BASE_URL = 'https://swapi.py4e.com/api';
+const BASE_URL = "https://swapi.py4e.com/api";
 
 // Извлекаем ID из URL
 const extractIdFromUrl = (url: string): number => {
@@ -9,16 +9,16 @@ const extractIdFromUrl = (url: string): number => {
 };
 
 export const charactersApi = {
-  getCharacters: async (page = 1, search = ''): Promise<ApiResponse> => {
+  getCharacters: async (page = 1, search = ""): Promise<ApiResponse> => {
     const params = new URLSearchParams();
-    params.append('page', page.toString());
+    params.append("page", page.toString());
     if (search) {
-      params.append('search', search);
+      params.append("search", search);
     }
 
     const response = await fetch(`${BASE_URL}/people/?${params}`,{next: {revalidate: 60}});
     if (!response.ok) {
-      throw new Error('Failed to fetch characters');
+      throw new Error("Failed to fetch characters");
     }
     const data = await response.json();
     
@@ -37,7 +37,7 @@ export const charactersApi = {
   getCharacter: async (id: number): Promise<Character> => {
     const response = await fetch(`${BASE_URL}/people/${id}/`,{next: {revalidate: 60}});
     if (!response.ok) {
-      throw new Error('Failed to fetch character');
+      throw new Error("Failed to fetch character");
     }
     const character = await response.json();
     return {
@@ -49,7 +49,7 @@ export const charactersApi = {
   getPlanet: async (url: string): Promise<Planet> => {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error('Failed to fetch planet');
+      throw new Error("Failed to fetch planet");
     }
     return response.json();
   }

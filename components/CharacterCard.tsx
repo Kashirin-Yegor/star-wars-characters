@@ -1,7 +1,7 @@
-import { Character } from '../types/character';
-import { Card, CardContent } from './ui/card';
-import { Badge } from './ui/badge';
-import { CharacterAvatar } from './CharacterAvatar';
+import { Character } from "../types/character";
+import { Card, CardContent } from "./ui/card";
+import { Badge } from "./ui/badge";
+import { CharacterAvatar } from "./CharacterAvatar";
 
 interface CharacterCardProps {
   character: Character;
@@ -10,7 +10,7 @@ interface CharacterCardProps {
 
 export function CharacterCard({ character, onClick }: CharacterCardProps) {
   const formatHeight = (height: string) => {
-    if (height === 'unknown') return 'Неизвестно';
+    if (height === "unknown") return "Неизвестно";
     return `${height} см`;
   };
 
@@ -29,11 +29,11 @@ export function CharacterCard({ character, onClick }: CharacterCardProps) {
             </p>
             <div className="flex items-center gap-2 mt-2">
               <Badge variant="secondary">
-                {character.gender === 'male' ? 'Мужской' : 
-                 character.gender === 'female' ? 'Женский' :
-                 character.gender === 'hermaphrodite' ? 'Гермафродит' : 'Неизвестно'}
+                {character.gender === "male" ? "Мужской" : 
+                 character.gender === "female" ? "Женский" :
+                 character.gender === "hermaphrodite" ? "Гермафродит" : "Неизвестно"}
               </Badge>
-              {character.birth_year !== 'unknown' && (
+              {character.birth_year !== "unknown" && (
                 <Badge variant="outline" className="text-xs">
                   {character.birth_year}
                 </Badge>

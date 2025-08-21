@@ -1,6 +1,6 @@
-import { Character } from '../types/character';
-import { Badge } from './ui/badge';
-import { CharacterAvatar } from './CharacterAvatar';
+import { Character } from "../types/character";
+import { Badge } from "./ui/badge";
+import { CharacterAvatar } from "./CharacterAvatar";
 
 interface CharacterListItemProps {
   character: Character;
@@ -9,12 +9,12 @@ interface CharacterListItemProps {
 
 export function CharacterListItem({ character, onClick }: CharacterListItemProps) {
   const formatHeight = (height: string) => {
-    if (height === 'unknown') return 'Неизвестно';
+    if (height === "unknown") return "Неизвестно";
     return `${height} см`;
   };
 
   const formatMass = (mass: string) => {
-    if (mass === 'unknown') return 'Неизвестно';
+    if (mass === "unknown") return "Неизвестно";
     return `${mass} кг`;
   };
 
@@ -32,11 +32,11 @@ export function CharacterListItem({ character, onClick }: CharacterListItemProps
       </div>
       <div className="flex items-center space-x-2">
         <Badge variant="secondary">
-          {character.gender === 'male' ? 'Мужской' : 
-           character.gender === 'female' ? 'Женский' :
-           character.gender === 'hermaphrodite' ? 'Гермафродит' : 'Неизвестно'}
+          {character.gender === "male" ? "Мужской" : 
+           character.gender === "female" ? "Женский" :
+           character.gender === "hermaphrodite" ? "Гермафродит" : "Неизвестно"}
         </Badge>
-        {character.birth_year !== 'unknown' && (
+        {character.birth_year !== "unknown" && (
           <div className="text-muted-foreground text-sm">
             {character.birth_year}
           </div>
