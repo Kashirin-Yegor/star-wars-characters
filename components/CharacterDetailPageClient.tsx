@@ -44,7 +44,7 @@ export function CharacterDetailPageClient() {
       setOriginalName(data.name);
 
       const localEdits = getLocalEdits();
-      const characterWithEdits = { ...data, ...localEdits[id] };
+      const characterWithEdits = { ...data, ...localEdits[data.name] };
 
       setCharacter(characterWithEdits);
       setEditedCharacter(characterWithEdits);
