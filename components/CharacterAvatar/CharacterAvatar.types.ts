@@ -1,3 +1,5 @@
+import {Character} from "@/types/character";
+
 export interface CharacterAvatarProps {
     character: Character;
     size?: "sm" | "md" | "lg" | "xl";
