@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Character } from "../../types/character";
-import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { Character } from "@/shared/types/character";
+import { ImageWithFallback } from "@/components/CharacterAvatar/components/ImageWithFallback";
 import {sizeMap} from "./CharacterAvatar.constants";
 import {CharacterAvatarProps,CharacterType} from "./CharacterAvatar.types";
 import {generateColorByType,getCharacterIcon} from "./CharacterType.utils";

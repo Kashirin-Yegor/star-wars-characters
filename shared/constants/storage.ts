@@ -1,0 +1,1 @@
+export const LOCAL_STORAGE_KEY = "sw_character_edits";

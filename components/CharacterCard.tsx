@@ -1,6 +1,6 @@
-import { Character } from "../types/character";
-import { Card, CardContent } from "./ui/card";
-import { Badge } from "./ui/badge";
+import { Character } from "@/shared/types/character";
+import { Card, CardContent } from "@/shared/ui/Card";
+import { Badge } from "@/shared/ui/Badge";
 import { CharacterAvatar } from "./CharacterAvatar";
 
 interface CharacterCardProps {

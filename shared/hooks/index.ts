@@ -1,0 +1,1 @@
+export {useDataStorage} from "./useDataStorage";

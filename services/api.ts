@@ -1,4 +1,4 @@
-import { ApiResponse, Character, Planet } from "../types/character";
+import { ApiResponse, Character, Planet } from "@/shared/types/character";
 
 const BASE_URL = "https://swapi.py4e.com/api";
 

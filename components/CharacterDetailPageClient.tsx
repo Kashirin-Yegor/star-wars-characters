@@ -2,19 +2,19 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { Character, LocalCharacterEdits, Planet } from "../types/character";
-import { charactersApi } from "../services/api";
+import { Character, Planet } from "@/shared/types/character";
+import { charactersApi } from "@/services/api";
 import { CharacterAvatar } from "./CharacterAvatar";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Badge } from "./ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { Button } from "@/shared/ui/Button";
+import { Input } from "@/shared/ui/Input";
+import { Label } from "@/shared/ui/Label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/shared/ui/Card";
+import { Badge } from "@/shared/ui/Badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/shared/ui/Select";
 import { ArrowLeft, Edit2, Save, X, Loader2, Globe } from "lucide-react";
 import { toast } from "sonner";
+import {LOCAL_STORAGE_KEY} from "@/shared/constants";
 
-const LOCAL_STORAGE_KEY = "sw_character_edits";
 
 export function CharacterDetailPageClient() {
   const router = useRouter();
@@ -35,6 +35,15 @@ export function CharacterDetailPageClient() {
       fetchCharacter(parseInt(characterId));
     }
   }, [characterId]);
+
+  const getLocalEdits = (): Record<string, Character> => {
+    try {
+      const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+      return stored ? JSON.parse(stored) : {};
+    } catch {
+      return {};
+    }
+  };
 
   const fetchCharacter = async (id: number) => {
     try {
@@ -61,15 +70,6 @@ export function CharacterDetailPageClient() {
       setError("Не удалось загрузить персонажа");
     } finally {
       setLoading(false);
-    }
-  };
-
-  const getLocalEdits = (): LocalCharacterEdits => {
-    try {
-      const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
-      return stored ? JSON.parse(stored) : {};
-    } catch {
-      return {};
     }
   };
 

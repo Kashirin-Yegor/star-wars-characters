@@ -1,5 +1,5 @@
-import { Character } from "../types/character";
-import { Badge } from "./ui/badge";
+import { Character } from "@/shared/types/character";
+import { Badge } from "@/shared/ui/Badge";
 import { CharacterAvatar } from "./CharacterAvatar";
 
 interface CharacterListItemProps {

@@ -1,4 +1,4 @@
-import {Character} from "@/types/character";
+import {Character} from "@/shared/types/character";
 
 export interface CharacterAvatarProps {
     character: Character;
