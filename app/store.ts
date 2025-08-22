@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import {makeAutoObservable, runInAction} from "mobx";
 import {ApiResponse, Character} from "@/shared/types/character";
 import {charactersApi} from "@/services/api";
 import {LOCAL_STORAGE_KEY} from "@/shared/constants";
@@ -21,7 +21,7 @@ export class HomeStore {
     }
 
     private setIsCardView(value: boolean) {
-        this.loading = value;
+        this.isCardView = value;
     }
 
     private setError(value: string | null) {

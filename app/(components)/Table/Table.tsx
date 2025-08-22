@@ -1,15 +1,23 @@
-import React from 'react';
-import {CharacterCard} from "@/components/CharacterCard";
-import {CharacterListItem} from "@/components/CharacterListItem";
+"use client";
+
+export const dynamic = "force-dynamic";
+import React, {useEffect} from 'react';
+import {CharacterCard} from "./components/CharacterCard";
+import {CharacterListItem} from "./components/CharacterListItem";
 import {Pagination} from "@/shared/ui/Pagination";
-import {useLocalObservable} from "mobx-react-lite";
-import {HomeStore} from "@/app/store";
 import {Character} from "@/shared/types/character";
 import {useRouter} from "next/navigation";
+import {useHomeStore} from "../../context"
+import { observer } from 'mobx-react-lite';
 
-export const Table = () => {
-    const store = useLocalObservable(() => new HomeStore());
+
+export const Table = observer(() => {
+    const store = useHomeStore();
     const router = useRouter();
+
+    useEffect(() => {
+        store.fetchCharacters();
+    }, [store.currentPage, store.searchQuery]);
 
     const handleCharacterClick = (character: Character) => {
         router.push(`/character/${character.id}`);
@@ -47,7 +55,7 @@ export const Table = () => {
                             <Pagination
                                 currentPage={store.currentPage}
                                 totalPages={store.totalPages}
-                                onPageChange={store.handlePageChange}
+                                onPageChange={(page) => store.handlePageChange(page)}
                             />
                         </div>
                     )}
@@ -55,4 +63,4 @@ export const Table = () => {
             )}
         </>
     );
-};
+});

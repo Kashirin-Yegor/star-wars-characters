@@ -1,11 +1,14 @@
+"use client";
+
 import React from 'react';
 import {Grid, List, Search} from "lucide-react";
 import {Input, Label, Switch} from "@/shared/ui";
-import {observer, useLocalObservable} from "mobx-react-lite";
-import {HomeStore} from "../store";
+import {observer} from "mobx-react-lite";
+import {useHomeStore} from "@/app/context";
 
 export const ActionsPanel = observer(() => {
-    const store = useLocalObservable(() => new HomeStore());
+    const store = useHomeStore();
+
     return (
         <>
             {/* Поиск и переключатель вида */}
@@ -23,7 +26,7 @@ export const ActionsPanel = observer(() => {
                     <List className="w-4 h-4" />
                     <Switch
                         checked={store.isCardView}
-                        onCheckedChange={store.handleChangeCardView}
+                        onCheckedChange={(value)=> store.handleChangeCardView(value)}
                         id="view-mode"
                     />
                     <Grid className="w-4 h-4" />

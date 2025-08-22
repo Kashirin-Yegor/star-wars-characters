@@ -1,14 +1,19 @@
+"use client";
+
+export const dynamic = "force-dynamic";
+
 import { Character } from "@/shared/types/character";
 import { Card, CardContent } from "@/shared/ui/Card";
 import { Badge } from "@/shared/ui/Badge";
-import { CharacterAvatar } from "./CharacterAvatar";
+import { CharacterAvatar } from "@/components/CharacterAvatar";
+import {observer} from "mobx-react-lite";
 
 interface CharacterCardProps {
   character: Character;
   onClick: (character: Character) => void;
 }
 
-export function CharacterCard({ character, onClick }: CharacterCardProps) {
+export const CharacterCard = observer(({ character, onClick }: CharacterCardProps) => {
   const formatHeight = (height: string) => {
     if (height === "unknown") return "Неизвестно";
     return `${height} см`;
@@ -44,4 +49,4 @@ export function CharacterCard({ character, onClick }: CharacterCardProps) {
       </CardContent>
     </Card>
   );
-}
+})
