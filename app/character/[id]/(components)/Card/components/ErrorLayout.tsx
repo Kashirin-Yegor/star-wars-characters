@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from "@/shared/ui";
 import {ArrowLeft} from "lucide-react";
 import {observer, useLocalObservable} from "mobx-react-lite";
-import {CharacterStore} from "../store";
+import {CharacterStore} from "../../../store";
 import {useRouter} from "next/navigation";
 
 export const ErrorLayout = observer(() => {

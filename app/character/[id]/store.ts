@@ -6,7 +6,7 @@ import {toast} from "sonner";
 
 
 export class CharacterStore {
-    loading = false;
+    loading = true;
     isEditing = false;
     editedCharacter:null | Character = null;
     character:null | Character = null;

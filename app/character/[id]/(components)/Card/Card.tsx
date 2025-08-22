@@ -5,11 +5,12 @@ import {observer} from "mobx-react-lite";
 import {Card as CardContainer,CardContent, CardHeader, CardTitle} from "@/shared/ui/Card";
 import {CharacterAvatar} from "@/components/CharacterAvatar";
 import {Badge} from "@/shared/ui";
-import {Actions, ErrorLayout, Loader, Row} from "@/app/character/[id]/(components)";
-import {useCharacterStore} from "@/app/character/[id]/context";
+import {Actions, ErrorLayout, Loader, Row} from "./components";
+import {useCharacterStore} from "../../context";
 import {useParams} from "next/navigation";
+import {Id} from "./components/Row/types";
 
-const fields = [
+const fields:Id[] = [
     'name',
     'height',
     'weight',

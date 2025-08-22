@@ -4,7 +4,7 @@ import {charactersApi} from "@/services/api";
 import {LOCAL_STORAGE_KEY} from "@/shared/constants";
 
 export class HomeStore {
-    loading = false;
+    loading = true;
     isCardView = true;
     error:null | string = null;
     totalPages:number = 1;

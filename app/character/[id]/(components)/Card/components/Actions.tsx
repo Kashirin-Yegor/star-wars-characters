@@ -10,10 +10,10 @@ export const Actions = observer(() => {
         <div className="flex space-x-2">
             {store.isEditing ? (
                 <>
-                    <Button size="sm" onClick={() => store.handleSave}>
+                    <Button size="sm" onClick={() => store.handleSave()}>
                         <Save className="w-4 h-4 mr-2" /> Сохранить
                     </Button>
-                    <Button size="sm" variant="outline" onClick={() => store.handleCancel}>
+                    <Button size="sm" variant="outline" onClick={() => store.handleCancel()}>
                         <X className="w-4 h-4 mr-2" /> Отмена
                     </Button>
                 </>
