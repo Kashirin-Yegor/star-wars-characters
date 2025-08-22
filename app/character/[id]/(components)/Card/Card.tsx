@@ -3,7 +3,7 @@
 import React, {useEffect} from 'react';
 import {observer} from "mobx-react-lite";
 import {Card as CardContainer,CardContent, CardHeader, CardTitle} from "@/shared/ui/Card";
-import {CharacterAvatar} from "@/components/CharacterAvatar";
+import {CharacterAvatar} from "@/shared/features/CharacterAvatar";
 import {Badge} from "@/shared/ui";
 import {Actions, ErrorLayout, Loader, Row} from "./components";
 import {useCharacterStore} from "../../context";
@@ -33,7 +33,7 @@ export const Card = observer(() => {
         if (characterId) {
             store.fetchCharacter(Number(characterId));
         }
-    }, [characterId]);
+    }, [store,characterId]);
 
     if (store.loading) {
         return <Loader />

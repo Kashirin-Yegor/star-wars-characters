@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 import { Character } from "@/shared/types/character";
 import { Card, CardContent } from "@/shared/ui/Card";
 import { Badge } from "@/shared/ui/Badge";
-import { CharacterAvatar } from "@/components/CharacterAvatar";
+import { CharacterAvatar } from "@/shared/features/CharacterAvatar";
 import {observer} from "mobx-react-lite";
 
 interface CharacterCardProps {

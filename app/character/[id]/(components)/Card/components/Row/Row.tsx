@@ -102,7 +102,7 @@ const RowYearOfBirth = observer(() => {
 
 const RowGender = observer(() => {
     const store = useCharacterStore();
-    const {isEditing,homeworld} = store;
+    const {isEditing} = store;
     const displayCharacter = store.editedCharacter || store.character;
     return <div>
         <Label>Пол</Label>

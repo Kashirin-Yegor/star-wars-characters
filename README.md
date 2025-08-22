@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌌 Star Wars Characters Database
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-15-000000?logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![MobX](https://img.shields.io/badge/MobX-6-EA6618?logo=mobx&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-enabled-4B32C3?logo=eslint&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-2ea44f)
 
-First, run the development server:
+База данных о персонажах вселенной **Star Wars**, созданная на **Next.js 15** с использованием **MobX** для управления состоянием.  
+Архитектура проекта модульная и легко расширяемая.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🚀 Стек технологий
+- ⚡ [Next.js 15](https://nextjs.org/) — современный React-фреймворк
+- 🛡 [TypeScript](https://www.typescriptlang.org/) — строгая типизация
+- 🔥 [MobX](https://mobx.js.org/README.html) — управление состоянием
+- 🎨 [@radix-ui](https://www.radix-ui.com/) — UI-компоненты
+- 🎭 [Lucide-react](https://lucide.dev/) — иконки
+- ✅ [ESLint](https://eslint.org/) — контроль качества кода
+
+---
+
+## 📂 Архитектура проекта
+```txt
+star-wars-app/
+├─ app/
+│  ├─ (components)/ - компоненты для конкретной страницы
+│  ├─ character/
+│  │  ├─ [id]/ -новая страница
+│  │  │  ├─ (components)/ компоненты для конкретной страницы
+│  │  ├─ context.tsx - провайдер и хук для сторая
+│  │  ├─ page.tsx - страница
+│  │  └─ store.ts - Стор Mobx
+│  ├─ context.tsx - провайдер и хук для сторая
+│  ├─ layout.tsx - layout
+│  └─ not-found.tsx - страница 404
+├─ public/
+├─ services/ - сервисы для всего приложения (Api,mocks)
+├─ shared/ - Переиспользуеме компоненты
+│  ├─ constants/ - константы
+│  ├─ features/ - UI с конкрентой бизнес логикой которая переиспользуется
+│  ├─ styles/ - глобальные стили
+│  ├─ types/ - Бизнес сущности
+│  ├─ ui/ - Примитивные UI компоненты (Button,Input)
+│  └─ utils/ - функции helpers
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚡ Установка и запуск
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# 1. Установка зависимостей
+npm install
 
-## Learn More
+# 2. Запуск в режиме разработки
+npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+# 3. Сборка проекта
+npm run build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# 4. Запуск production-сборки
+npm run start
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# 5. Линтинг кода
+npm run lint
 
-## Deploy on Vercel
+```
+## 🌌 Функционал
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+📖 Просмотр списка персонажей Star Wars
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🔎 Поиск и фильтрация
+
+🧩 Динамические страницы персонажей (/character/[id])
+
+⚡ Быстрый и удобный UI
+
+📦 MobX store для глобального и локального состояния
+
+## 📦 Планы по развитию
+
+🌍 Добавить много карточек
+
+🎨 Улучшить UI и добавить поддержку тем
+
+## 🛡️ Лицензия
+
+Этот проект распространяется под лицензией MIT.

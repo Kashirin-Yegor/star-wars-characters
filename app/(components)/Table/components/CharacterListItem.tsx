@@ -1,6 +1,6 @@
 import { Character } from "@/shared/types/character";
 import { Badge } from "@/shared/ui/Badge";
-import { CharacterAvatar } from "@/components/CharacterAvatar";
+import { CharacterAvatar } from "@/shared/features/CharacterAvatar";
 
 interface CharacterListItemProps {
   character: Character;
