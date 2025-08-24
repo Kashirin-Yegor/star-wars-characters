@@ -2,8 +2,6 @@
 
 import {HomeStoreProvider} from "./context";
 
-export const dynamic = "force-dynamic";
-
 import { Card, CardContent } from "@/shared/ui/Card";
 import {ErrorLayout} from "@/app/(components)/ErrorLayout";
 import {NotFound} from "@/app/(components)/NotFound";
@@ -21,17 +19,9 @@ export default function HomePage() {
                   <Header />
                   <CardContent>
                       <ActionsPanel />
-
-                      {/* Загрузка */}
                       <Loader />
-
-                      {/* Ошибка */}
                       <ErrorLayout />
-
-                      {/* Персонажи */}
                       <Table />
-
-                      {/* Нет результатов */}
                       <NotFound />
                   </CardContent>
               </Card>

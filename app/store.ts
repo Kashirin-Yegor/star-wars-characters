@@ -11,10 +11,20 @@ export class HomeStore {
     currentPage:number = 1;
     characters: Character[] = [];
     searchQuery = "";
+    private initialized = false;
 
     constructor() {
         makeAutoObservable(this);
-        this.fetchCharacters();
+        if (typeof window !== 'undefined') {
+            this.initializeStore();
+        }
+    }
+
+    private async initializeStore() {
+        if (!this.initialized) {
+            this.initialized = true;
+            await this.fetchCharacters();
+        }
     }
 
     private setLoading(value: boolean) {

@@ -1,7 +1,5 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
 import { Character } from "@/shared/types/character";
 import { Card, CardContent } from "@/shared/ui/Card";
 import { Badge } from "@/shared/ui/Badge";

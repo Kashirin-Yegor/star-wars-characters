@@ -1,12 +1,6 @@
 import { ApiResponse, Character, Planet } from "@/shared/types/character";
-
-const BASE_URL = "https://swapi.py4e.com/api";
-
-// Извлекаем ID из URL
-const extractIdFromUrl = (url: string): number => {
-  const matches = url.match(/\/(\d+)\/$/);
-  return matches ? parseInt(matches[1]) : 0;
-};
+import {extractIdFromUrl} from "@/shared/utils"
+import {BASE_URL,CACHE_REVALIDATE_TIME,LONG_CACHE_TIME} from "@/shared/constants"
 
 export const charactersApi = {
   getCharacters: async (page = 1, search = ""): Promise<ApiResponse> => {
@@ -16,13 +10,21 @@ export const charactersApi = {
       params.append("search", search);
     }
 
-    const response = await fetch(`${BASE_URL}/people/?${params}`,{next: {revalidate: 60}});
+    const cacheTime = search ? CACHE_REVALIDATE_TIME : LONG_CACHE_TIME;
+    
+    const response = await fetch(`${BASE_URL}/people/?${params}`, {
+      next: { 
+        revalidate: cacheTime,
+        tags: ['characters']
+      }
+    });
+    
     if (!response.ok) {
-      throw new Error("Failed to fetch characters");
+      throw new Error(`Failed to fetch characters: ${response.status} ${response.statusText}`);
     }
+    
     const data = await response.json();
     
-    // Добавляем ID к каждому персонажу
     const charactersWithIds = data.results.map((character: Character) => ({
       ...character,
       id: extractIdFromUrl(character.url)
@@ -35,10 +37,17 @@ export const charactersApi = {
   },
 
   getCharacter: async (id: number): Promise<Character> => {
-    const response = await fetch(`${BASE_URL}/people/${id}/`,{next: {revalidate: 60}});
+    const response = await fetch(`${BASE_URL}/people/${id}/`, {
+      next: { 
+        revalidate: LONG_CACHE_TIME,
+        tags: [`character-${id}`]
+      }
+    });
+    
     if (!response.ok) {
-      throw new Error("Failed to fetch character");
+      throw new Error(`Failed to fetch character: ${response.status} ${response.statusText}`);
     }
+    
     const character = await response.json();
     return {
       ...character,
@@ -47,10 +56,17 @@ export const charactersApi = {
   },
 
   getPlanet: async (url: string): Promise<Planet> => {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      next: { 
+        revalidate: LONG_CACHE_TIME,
+        tags: ['planets']
+      }
+    });
+    
     if (!response.ok) {
-      throw new Error("Failed to fetch planet");
+      throw new Error(`Failed to fetch planet: ${response.status} ${response.statusText}`);
     }
+    
     return response.json();
   }
 };

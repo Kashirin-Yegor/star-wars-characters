@@ -13,10 +13,22 @@ export class CharacterStore {
     homeworld:null | Planet = null;
     error:null | string = null;
     originalName = "";
+    private characterId: number;
+    private initialized = false;
 
     constructor(characterId:number) {
         makeAutoObservable(this);
-        this.fetchCharacter(characterId)
+        this.characterId = characterId;
+        if (typeof window !== 'undefined') {
+            this.initializeStore();
+        }
+    }
+
+    private async initializeStore() {
+        if (!this.initialized) {
+            this.initialized = true;
+            await this.fetchCharacter(this.characterId);
+        }
     }
 
     private setLoading(value: boolean) {
@@ -49,6 +61,9 @@ export class CharacterStore {
 
     private getLocalEdits  (): Record<string, Character> {
         try {
+            if (typeof window === 'undefined') {
+                return {};
+            }
             const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
             return stored ? JSON.parse(stored) : {};
         } catch {
@@ -86,6 +101,9 @@ export class CharacterStore {
 
     private saveLocalEdits = (edits: Partial<Character>) => {
         try {
+            if (typeof window === 'undefined') {
+                return;
+            }
             const currentEdits = this.getLocalEdits();
             const updatedEdits = {
                 ...currentEdits,
