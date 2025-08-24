@@ -14,8 +14,9 @@ export class CharacterStore {
     error:null | string = null;
     originalName = "";
 
-    constructor() {
+    constructor(characterId:number) {
         makeAutoObservable(this);
+        this.fetchCharacter(characterId)
     }
 
     private setLoading(value: boolean) {

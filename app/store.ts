@@ -14,6 +14,7 @@ export class HomeStore {
 
     constructor() {
         makeAutoObservable(this);
+        this.fetchCharacters();
     }
 
     private setLoading(value: boolean) {
@@ -46,6 +47,10 @@ export class HomeStore {
 
     private prepareCharacters (originalData:Character[]): Character[] {
         try{
+            if (typeof window === 'undefined') {
+                return originalData;
+            }
+            
             const cache = localStorage.getItem(LOCAL_STORAGE_KEY);
             const cacheData = cache ? JSON.parse(cache) : {};
             return originalData.map((el) => {
@@ -54,7 +59,7 @@ export class HomeStore {
             });
         }catch(e){
             console.log(e);
-            return [];
+            return originalData;
         }
     }
 
@@ -64,7 +69,7 @@ export class HomeStore {
             this.setError(null);
             const data: ApiResponse = await charactersApi.getCharacters(this.currentPage, this.searchQuery);
             this.setCharacters(this.prepareCharacters(data.results));
-            this.setTotalPages(Math.ceil(data.count / 10)); // SWAPI возвращает 10 результатов на страницу
+            this.setTotalPages(Math.ceil(data.count / 10));
         } catch{
             this.setError("Не удалось загрузить персонажей");
             this.setCharacters([]);
@@ -76,10 +81,12 @@ export class HomeStore {
     public handleSearch(query: string)  {
         this.setSearchQuery(query);
         this.setCurrentPage(1);
+        this.fetchCharacters();
     };
 
     public handlePageChange(page: number)  {
         this.setCurrentPage(page);
+        this.fetchCharacters();
     };
     public handleChangeCardView(value:boolean){
         this.setIsCardView(value);

@@ -15,10 +15,6 @@ export const Table = observer(() => {
     const store = useHomeStore();
     const router = useRouter();
 
-    useEffect(() => {
-        store.fetchCharacters();
-    }, [store, store.currentPage, store.searchQuery]);
-
     const handleCharacterClick = (character: Character) => {
         router.push(`/character/${character.id}`);
     };

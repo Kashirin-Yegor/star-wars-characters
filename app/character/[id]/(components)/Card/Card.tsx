@@ -1,13 +1,12 @@
 "use client";
 
-import React, {useEffect} from 'react';
+import React from 'react';
 import {observer} from "mobx-react-lite";
 import {Card as CardContainer,CardContent, CardHeader, CardTitle} from "@/shared/ui/Card";
 import {CharacterAvatar} from "@/shared/features/CharacterAvatar";
 import {Badge} from "@/shared/ui";
 import {Actions, ErrorLayout, Loader, Row} from "./components";
 import {useCharacterStore} from "../../context";
-import {useParams} from "next/navigation";
 import {Id} from "./components/Row/types";
 
 const fields:Id[] = [
@@ -26,14 +25,6 @@ const fields:Id[] = [
 
 export const Card = observer(() => {
     const store = useCharacterStore();
-    const params = useParams();
-    const characterId = params?.id as string;
-
-    useEffect(() => {
-        if (characterId) {
-            store.fetchCharacter(Number(characterId));
-        }
-    }, [store,characterId]);
 
     if (store.loading) {
         return <Loader />

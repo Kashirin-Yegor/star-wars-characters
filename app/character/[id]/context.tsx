@@ -5,8 +5,8 @@ import {useLocalObservable} from "mobx-react-lite";
 
 export const CharacterStoreContext = createContext<CharacterStore | null>(null);
 
-export const CharacterStoreProvider: FC<{ children: ReactNode }> = ({ children }) => {
-    const store = useLocalObservable(() => new CharacterStore());
+export const CharacterStoreProvider: FC<{ children: ReactNode,characterId: number }> = ({ children, characterId }) => {
+    const store = useLocalObservable(() => new CharacterStore(characterId));
     return (
         <CharacterStoreContext.Provider value={store}>
             {children}
