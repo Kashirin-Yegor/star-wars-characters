@@ -1,12 +1,12 @@
 import React from 'react';
 import {Button} from "@/shared/ui";
 import {ArrowLeft} from "lucide-react";
-import {observer, useLocalObservable} from "mobx-react-lite";
-import {CharacterStore} from "../../../store";
+import {observer} from "mobx-react-lite";
 import {useRouter} from "next/navigation";
+import {useCharacterStore} from "../../../context";
 
 export const ErrorLayout = observer(() => {
-    const store = useLocalObservable(() => new CharacterStore());
+    const store = useCharacterStore();
     const router = useRouter();
     return (
         <div className="container mx-auto px-4 py-8 text-center">
