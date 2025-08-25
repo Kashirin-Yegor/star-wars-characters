@@ -3,6 +3,8 @@ import {ApiResponse, Character} from "@/shared/types/character";
 import {charactersApi} from "@/services/api";
 import {LOCAL_STORAGE_KEY} from "@/shared/constants";
 
+const DEBOUNCE_TIME = 500;
+
 export class HomeStore {
     loading = true;
     isCardView = true;
@@ -12,6 +14,7 @@ export class HomeStore {
     characters: Character[] = [];
     searchQuery = "";
     private initialized = false;
+    private searchTimeout: NodeJS.Timeout | null = null;
 
     constructor() {
         makeAutoObservable(this);
@@ -90,8 +93,15 @@ export class HomeStore {
 
     public handleSearch(query: string)  {
         this.setSearchQuery(query);
-        this.setCurrentPage(1);
-        this.fetchCharacters();
+        
+        if (this.searchTimeout) {
+            clearTimeout(this.searchTimeout);
+        }
+        
+        this.searchTimeout = setTimeout(() => {
+            this.setCurrentPage(1);
+            this.fetchCharacters();
+        }, DEBOUNCE_TIME);
     };
 
     public handlePageChange(page: number)  {
@@ -100,5 +110,12 @@ export class HomeStore {
     };
     public handleChangeCardView(value:boolean){
         this.setIsCardView(value);
+    }
+
+    public cleanup() {
+        if (this.searchTimeout) {
+            clearTimeout(this.searchTimeout);
+            this.searchTimeout = null;
+        }
     }
 }
