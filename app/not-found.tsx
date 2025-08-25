@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { Button } from "@/shared/ui/Button";
-import { ArrowLeft } from "lucide-react";
+import Link from 'next/link';
+import { Button } from '@/shared/ui/Button';
+import { ArrowLeft } from 'lucide-react';
 
 export default function NotFound() {
   return (

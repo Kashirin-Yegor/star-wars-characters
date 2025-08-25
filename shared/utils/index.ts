@@ -1,2 +1,2 @@
-export {cn} from "./cn"
-export {extractIdFromUrl} from "./extractIdFromUrl"
+export { cn } from './cn';
+export { extractIdFromUrl } from './extractIdFromUrl';
