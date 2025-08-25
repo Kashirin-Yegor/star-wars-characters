@@ -18,13 +18,10 @@ export class HomeStore {
 
     constructor() {
         makeAutoObservable(this);
-        if (typeof window !== 'undefined') {
-            this.initializeStore();
-        }
     }
 
-    private async initializeStore() {
-        if (!this.initialized) {
+    public async initializeStore() {
+        if (!this.initialized && typeof window !== 'undefined') {
             this.initialized = true;
             await this.fetchCharacters();
         }

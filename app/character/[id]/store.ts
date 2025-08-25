@@ -19,13 +19,10 @@ export class CharacterStore {
     constructor(characterId:number) {
         makeAutoObservable(this);
         this.characterId = characterId;
-        if (typeof window !== 'undefined') {
-            this.initializeStore();
-        }
     }
 
-    private async initializeStore() {
-        if (!this.initialized) {
+    public async initializeStore() {
+        if (!this.initialized && typeof window !== 'undefined') {
             this.initialized = true;
             await this.fetchCharacter(this.characterId);
         }

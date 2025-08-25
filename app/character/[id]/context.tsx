@@ -1,12 +1,16 @@
 'use client';
-import {createContext,useContext,FC,ReactNode} from 'react';
+import {createContext,useContext,FC,ReactNode, useMemo, useEffect} from 'react';
 import { CharacterStore } from './store';
-import {useLocalObservable} from "mobx-react-lite";
 
 export const CharacterStoreContext = createContext<CharacterStore | null>(null);
 
 export const CharacterStoreProvider: FC<{ children: ReactNode,characterId: number }> = ({ children, characterId }) => {
-    const store = useLocalObservable(() => new CharacterStore(characterId));
+    const store = useMemo(() => new CharacterStore(characterId), [characterId]);
+    
+    useEffect(() => {
+        store.initializeStore();
+    }, [store]);
+    
     return (
         <CharacterStoreContext.Provider value={store}>
             {children}

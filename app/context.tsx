@@ -1,12 +1,20 @@
 'use client';
-import {createContext,useContext,FC,ReactNode} from 'react';
+import {createContext,useContext,FC,ReactNode, useMemo, useEffect} from 'react';
 import { HomeStore } from './store';
-import {useLocalObservable} from "mobx-react-lite";
 
 export const HomeStoreContext = createContext<HomeStore | null>(null);
 
 export const HomeStoreProvider: FC<{ children: ReactNode }> = ({ children }) => {
-    const store = useLocalObservable(() => new HomeStore());
+    const store = useMemo(() => new HomeStore(), []);
+    
+    useEffect(() => {
+        store.initializeStore();
+        
+        return () => {
+            store.cleanup();
+        };
+    }, [store]);
+    
     return (
         <HomeStoreContext.Provider value={store}>
             {children}
